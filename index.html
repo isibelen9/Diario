@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Diario de vida personal y privado en tu navegador.">
+<title>Mi Diario</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar"><div class="container bar">
+<a class="brand" href="#"><span class="mark">✦</span><span><b>Mi Diario</b><small>un espacio para escribir</small></span></a>
+<div class="actions"><button id="newEntryBtn" class="primary">＋ Nueva entrada</button><button id="themeBtn" class="icon">☀️</button></div>
+</div></header>
+
+<main class="container">
+<section class="hero">
+<div><span class="eyebrow">TU ESPACIO · TUS PALABRAS</span><h1>Escribe lo que<br><em>quieras recordar.</em></h1><p>Guarda momentos, ideas, pensamientos o simplemente cómo estuvo tu día. Tus entradas quedan almacenadas en este navegador.</p></div>
+<div class="stats"><article><span>Entradas</span><strong id="entryCount">0</strong><small>guardadas</small></article><article><span>Este mes</span><strong id="monthCount">0</strong><small>entradas</small></article></div>
+</section>
+
+<section class="toolbar card">
+<div class="search"><span>⌕</span><input id="searchInput" type="search" placeholder="Buscar por título, texto o etiqueta…"></div>
+<select id="moodFilter"><option value="all">Todos los estados</option><option value="feliz">😊 Feliz</option><option value="tranquilo">😌 Tranquilo/a</option><option value="emocionado">🤩 Emocionado/a</option><option value="cansado">😴 Cansado/a</option><option value="triste">😔 Triste</option><option value="enojado">😤 Enojado/a</option><option value="confundido">😵‍💫 Confundido/a</option><option value="neutral">🙂 Neutral</option></select>
+<select id="sortFilter"><option value="newest">Más recientes</option><option value="oldest">Más antiguas</option><option value="updated">Editadas recientemente</option></select>
+<button id="clearFiltersBtn" class="textbtn">Limpiar</button>
+</section>
+
+<section class="layout">
+<aside class="timeline card"><span class="eyebrow">HISTORIAL</span><h2>Mis entradas</h2><div id="timelineList"></div></aside>
+<section class="reader card">
+<div id="emptyReader" class="empty"><div>📖</div><h2>Tu diario empieza aquí</h2><p>Escribe una nueva entrada o selecciona una del historial.</p><button id="emptyNewBtn" class="primary">Escribir mi primera entrada</button></div>
+<article id="entryReader" class="hidden">
+<div class="readerTop"><div><span id="readerMood" class="mood">🙂</span><span id="readerDate" class="date"></span></div><div class="readerActions"><button id="editEntryBtn" class="secondary">Editar</button><button id="deleteEntryBtn" class="danger">Eliminar</button></div></div>
+<h2 id="readerTitle"></h2><div id="readerTags" class="tags"></div><div id="readerContent" class="content"></div>
+<div class="readerFooter"><span id="readerUpdated"></span><span id="readerWords"></span></div>
+</article>
+</section>
+</section>
+
+<section class="backup card">
+<div><span class="eyebrow">RESPALDO</span><h2>Lleva tu diario contigo</h2><p>Las entradas se guardan solo en este navegador. Puedes exportar un archivo JSON como respaldo e importarlo luego en otro equipo.</p></div>
+<div class="backupActions"><button id="exportBtn" class="secondary">↓ Exportar diario</button><label class="secondary file">↑ Importar diario<input id="importInput" type="file" accept=".json,application/json"></label></div>
+<div id="backupFeedback"></div>
+</section>
+
+<section class="privacy card"><span>🔒</span><div><b>Sobre la privacidad</b><p>Esta versión no envía tus textos a un servidor: usa el almacenamiento local del navegador. Si borras sus datos o cambias de dispositivo sin exportar el diario, podrías perder las entradas.</p></div></section>
+</main>
+
+<footer class="container footer"><b>Mi Diario</b><span>Un lugar sencillo para escribir y volver a leer.</span></footer>
+
+<dialog id="entryDialog"><form id="entryForm">
+<button type="button" id="closeDialogBtn" class="close">×</button><span class="eyebrow">ENTRADA</span><h2 id="dialogTitle">Nueva entrada</h2><input id="entryId" type="hidden">
+<div class="two"><label>Fecha<input id="dateInput" type="date" required></label><label>¿Cómo te sentías?<select id="moodInput"><option value="neutral">🙂 Neutral</option><option value="feliz">😊 Feliz</option><option value="tranquilo">😌 Tranquilo/a</option><option value="emocionado">🤩 Emocionado/a</option><option value="cansado">😴 Cansado/a</option><option value="triste">😔 Triste</option><option value="enojado">😤 Enojado/a</option><option value="confundido">😵‍💫 Confundido/a</option></select></label></div>
+<label>Título<input id="titleInput" maxlength="100" placeholder="Ej: Un día que quiero recordar"></label>
+<label>Escribe aquí<textarea id="contentInput" maxlength="20000" required placeholder="¿Qué pasó hoy? ¿Qué pensaste? ¿Qué quieres recordar?"></textarea></label>
+<div class="writingMeta"><span><b id="charCount">0</b> caracteres</span><span><b id="wordCount">0</b> palabras</span></div>
+<label>Etiquetas<input id="tagsInput" maxlength="150" placeholder="Ej: amigos, colegio, viaje"><small>Sepáralas con comas.</small></label>
+<button class="primary full" type="submit">Guardar entrada</button><div id="formFeedback"></div>
+</form></dialog>
+
+<script src="app.js"></script>
+</body></html>
